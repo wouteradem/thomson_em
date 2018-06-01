@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.stats import linregress
 
 # Orientation North - South.
 f = open('data/ascii/MAG2AA.AAF', 'r')
@@ -15,9 +16,6 @@ for line in f:
 f.close()
 
 imin, imax = min(i), max(i)
-print("MIN = {}".format(imin))
-print("MAX = {}".format(imax))
-
 Polynomial = np.polynomial.Polynomial
 pfit, stats = Polynomial.fit(i, bt, 1, full=True, window=(imin, imax), domain=(imin, imax))
 
@@ -25,13 +23,16 @@ A0, m = pfit
 resid, rank, sing_val, rcond = stats
 rms = np.sqrt(resid[0]/len(bt))
 
+slope, intercept, r_value, p_value, std_err = linregress(i, bt)
+print("SLOPE North-South = {}".format(slope))
+
 plt.plot(i, bt, 'o', color='k')
 plt.plot(i, pfit(i), color='k')
 
 plt.plot()
 plt.style.use('seaborn-whitegrid')
 plt.xlabel("Stroom (mA)")
-plt.ylabel("Magnetisch veld (mT)")
+plt.ylabel("Magnetisch veld (\microT)")
 
 # Orientation East - West.
 f = open('data/ascii/MAG2AA.AAE', 'r')
@@ -47,15 +48,14 @@ for line in f:
 f.close()
 
 imin, imax = min(i), max(i)
-print("MIN = {}".format(imin))
-print("MAX = {}".format(imax))
-
 Polynomial = np.polynomial.Polynomial
 pfit, stats = Polynomial.fit(i, bt, 1, full=True, window=(imin, imax), domain=(imin, imax))
 
 A0, m = pfit
 resid, rank, sing_val, rcond = stats
 rms = np.sqrt(resid[0]/len(bt))
+slope, intercept, r_value, p_value, std_err = linregress(i, bt)
+print("SLOPE East-West = {}".format(slope))
 
 plt.plot(i, bt, 'o', color='r')
 plt.plot(i, pfit(i), color='r')
