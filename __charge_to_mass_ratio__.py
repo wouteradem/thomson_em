@@ -1,7 +1,9 @@
 import numpy as np
 from scipy.constants import mu_0
 
-
+"""
+      Calculates the ration q/m.
+"""
 def magnetic_induction(radius, current):
     # return mu_0 * np.power(0.8, 1.5) * NR_OF_COILS * current * (1./radius) -> Wrong formula!
     factor = (mu_0 * NR_OF_COILS * np.power(radius, 2)) / \

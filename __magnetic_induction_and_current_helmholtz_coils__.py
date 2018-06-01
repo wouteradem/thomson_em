@@ -2,6 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import linregress
 
+"""
+      Calculates B field from ASCII data.
+"""
+
 # Orientation North - South.
 f = open('data/ascii/MAG2AA.AAF', 'r')
 bt = np.empty(51)
