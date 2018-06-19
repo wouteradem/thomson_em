@@ -50,6 +50,8 @@ if __name__ == '__main__':
 
       # Compute the total B field.
       bt = np.sqrt(np.power(bz, 2) + np.power(bp, 2))
+      for i in bt:
+            print(i)
 
       ax.contour3D(z, p, bt, 200, cmap='coolwarm')
       ax.scatter(-d, -a, 0.001953, c='r', marker='o')
@@ -73,4 +75,4 @@ if __name__ == '__main__':
       plt.xlabel('Z(m)')
       plt.ylabel('R(m)')
       ax.set_zlabel('B([$\mu$]T)')
-      plt.show()
+      #plt.show()

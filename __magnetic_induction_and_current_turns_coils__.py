@@ -46,4 +46,6 @@ if __name__ == '__main__':
     print(slopes)
 
     # Finally, draw.
+    plt.xlabel('Ampere (mA)')
+    plt.ylabel('Magnetisch veld ($\mu$T)')
     plt.show()
